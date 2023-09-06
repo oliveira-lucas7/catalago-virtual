@@ -1,137 +1,112 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Checkbox, Container, FormControl, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, json, useNavigate } from 'react-router-dom';
 
+
+//Mudando o tema dos componentes do material UI
 const theme = createTheme({
-    palette: {
-        mode: 'light',
-        primary: {
-          main: '#D62413',
-        },
-        secondary: {
-          main: '#346187',
-          light: '#7f1365',
-        },
-        background: {
-          default: '#161616',
-          paper: '#0cd66f',
-        },
-        error: {
-          main: '#d32f2f',
-        },
-        success: {
-          main: '#2e7d32',
-        },
-      },
-});
+  //aqui dentro vai ter cor primária, secundária e etc
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#b53d40',
+    },
+    secondary: {
+      main: '#ff002a',
+    },
+    background: {
+      default: '#b1b1b1',
+    },
+  },
+})
+
 
 function Login() {
 
-    const[ email, setEmail ] = useState( "" );
-    const[ senha, setSenha ] = useState( "" );
-    const[ lembrar, setLembrar ] = useState( false );
-    const[ login, setLogin ] = useState( false ); 
-    const[ erro, setErro ] = useState( false );
-    const navigate = useNavigate();
-
-    useEffect( () => {
-
-        if( login ) {
-            localStorage.setItem( "usuario" , JSON.stringify( { email: email } ) );
-            setEmail( " " );
-            setSenha( " " );
-            navigate( "/" );
-        }
-
-    }, [login]);
-
-    function Autenticar( evento )
-    {
-
-        evento.preventDefault();
-    //Quando o botão de login for clicado, ele será acionado no Box component (Isso serve para que não recarregue a página quando o botão for acionado)
-
-        fetch( "https://api.escuelajs.co/api/v1/auth/login",{
-        method: "POST",
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify(
-            {
-                email: email, //No banco de dados terá campos de emails, aonde neles será procurado o email solicitado pelo o usuário
-                password: senha //No banco de dados terá campos de senhas, aonde neles será procurado a senha solicitada pelo o usuário
-            }
-        )
-        })
-        .then( (resposta) => resposta.json() ) //Se tudo ocorrer da maneira correta, a resposta se tem o email e senha no banco de dados, será entregue/feita na forma de Json
-        .then( ( json ) => {
-            if( json.statusCode === 401 ){
-                setErro( true );
-//401 é o código enviado através do json para dizer que ou a senha ou o email estão errado, e se caso o status do pedido do login for igual a 401, dá erro, se for diferente, deu certo 
-            } else {
-                setLogin( true );
-            }
-        })
-        .catch( ( erro ) => { setErro(true)})
+  const [ email, setEmail]= useState("");
+  const [ senha, setSenha]= useState("");
+  const [ lembrar , setLembrar]= useState(false);
+  const [ login, setLogin]= useState(false)
+  const [ erro, setErro]= useState(false)
+  const navigate = useNavigate()
+  useEffect( () => {
+    if (login){
+      localStorage.setItem("usuario", JSON.stringify({email:email}));
+      setEmail("");
+      setSenha("");
+      navigate("/");//Está mudando a url da react, após o login manda o usuário para a página raiz (app)
     }
+  }, [login])
+
+  //função para quando enviar o formulário não recarregar a página e autenticar os dados
+  function Autenticar(evento){
+    evento.preventDefault();
+
+    fetch("https://api.escuelajs.co/api/v1/auth/login",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
+    {method: "Post",//A requisição irá ser do método post, ou seja, por baixo dos panos (Existe 5 métodos de requisição)
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(//O corpo da requisição será essa
+      {
+        email: email,//No banco de dados estará campos chamados email que neles será procurado o que está dentro da variável email
+        password: senha//No banco de dados estará campos chamados password que neles será procurado o que está dentro da variável senha
+      }
+    )})
+    .then((resposta) => resposta.json())//Então se tudo deu certo pega a resposta e transforma em JSON
+    .then((json) => {
+      if (json.statusCode === 401){//Se o número que o banco de dados retornar, ou seja, o statusCode for igual a 401, quer dizer que não foi encontrado esses dados no banco de dados, 401 é o número específico que diz que não está autorizado        setLogin(false);
+        setLogin(true);//Caso contrário, quer dizer que o login foi autorizado, logo o setLogin será true
+      } else {
+        setErro(true)//Se satisfazer a condição quer dizer que não foi autorizado, ou seja, o setErro será true, e dará erro ao fazer o login
+      }
+    })
+    .catch((erro) => { setErro(true)})//Qualquer tipo de erro irá cair no cath
+  }
 
   return (
-    <ThemeProvider theme={theme}>
-    <Container component="section" maxWidth="xs">
-        <Box 
-        sx={{
-            mt: 10,
-            backgroundColor: "#C4C4C4",
-            padding: "50px",
-            borderRadius: "10px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: 'center',
-            }}>
-
-            <Typography component="h1" variant='h4'>Entrar</Typography>
-            <Box component="form" onSubmit={Autenticar} >
-                <TextField 
-                type="email" 
-                label="Email" 
-                variant="outlined" 
-                margin="normal" 
-                value={email}
-                onChange={ (e) => setEmail( e.target.value )}
-                //No início, não há nada no email, e quando o usuário começar a digitar, automaticamente vai ser mudado o email
-                fullWidth
-                />
-                <TextField 
-                type="password" 
-                label="Senha" 
-                variant="outlined" 
-                margin="normal" 
-                value={senha}
-                onChange={ (e) => setSenha( e.target.value )}
-                //No início, não há nada na senha, e quando o usuário começar a digitar, automaticamente vai ser mudado a senha
-                fullWidth
-                />
-                <FormControlLabel
-                    control={<Checkbox value={lembrar} name='lembrar' onChange={(e) => setLembrar( !lembrar )}/>}
-                    //A exclamação no lembrar tem a função de inverter o valor do elemento, se clicar é true, se não, é false
-                    label="Lembrar-Me"
-                />
-                <Button type="submit" variant="contained" fullWidth sx={{ mt: 2, mb: 2 }}>Login</Button>
-                <Grid container>
-                    <Grid item xs>
-                        Esqueci a senha
-                    </Grid>
-                    <Grid item>
-                        Cadastrar
-                    </Grid>
-                </Grid>
-            </Box>
+      <Container component="section" maxWidth="xs">
+        <Box sx={{mt: 10, padding: "40px", borderRadius: "10px", boxShadow: "2px", display:"flex", flexDirection:"column", alignItems:"center"}}>
+          <Typography component="h1" variant='h5'>Entrar</Typography>
+          {erro && (<Alert severity='warning'>Revise seus dados e tente novamente</Alert>) }
+          <Box component="form" onSubmit={Autenticar}>
+            <TextField 
+            label="Email" 
+            variant='outlined' 
+            type='email'
+            margin='normal' 
+            fullWidth 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField 
+            label="Senha" 
+            variant='outlined' 
+            type='password' 
+            margin='normal' 
+            fullWidth 
+            value={senha} 
+            onChange={(e) => setSenha(e.target.value)}
+            />
+            <FormControlLabel 
+            control={<Checkbox value={lembrar} onChange={(e) => setLembrar(!lembrar)} />}// a ! serve para colocar o contrário do que está dentro da variável lembrar, pode estar true vai para false, se estiver false vai para true.
+            label="Lembra-me"
+            />
+            <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2}}>Login</Button>
+            <Grid container >
+              <Grid item xs>
+                Esqueci a senha
+              </Grid>
+              <Grid item>
+                Cadastrar
+              </Grid>
+            </Grid>
+          </Box>
         </Box>
-    </Container>
-    </ThemeProvider>
+      </Container>
   )
 }
 
-export default Login
+export default Login;
