@@ -44,8 +44,8 @@ function Login() {
   function Autenticar(evento){
     evento.preventDefault();
 
-    fetch("https://api.escuelajs.co/api/v1/auth/login",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
-    {method: "Post",//A requisição irá ser do método post, ou seja, por baixo dos panos (Existe 5 métodos de requisição)
+    fetch( process.env.REACT_APP_BACKEND + "login",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
+    {method: "POST",//A requisição irá ser do método post, ou seja, por baixo dos panos (Existe 5 métodos de requisição)
     headers: {
       'Content-Type': 'application/json'
     },
