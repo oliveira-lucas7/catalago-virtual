@@ -3,25 +3,8 @@ import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import { Navigate, json, useNavigate } from 'react-router-dom';
-
-
-//Mudando o tema dos componentes do material UI
-const theme = createTheme({
-  //aqui dentro vai ter cor primária, secundária e etc
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#b53d40',
-    },
-    secondary: {
-      main: '#ff002a',
-    },
-    background: {
-      default: '#b1b1b1',
-    },
-  },
-})
-
+import { blue } from '@mui/material/colors';
+import Style from "./Login.module.css";
 
 function Login() {
 
@@ -67,14 +50,23 @@ function Login() {
   }
 
   return (
-      <Container component="section" maxWidth="xs">
-        <Box sx={{mt: 10, padding: "40px", borderRadius: "10px", boxShadow: "2px", display:"flex", flexDirection:"column", alignItems:"center"}}>
-          <Typography component="h1" variant='h5'>Entrar</Typography>
+      <Container component="section" maxWidth="xs" className={Style.container}>
+        <Box sx={{
+          mt: 10, 
+          padding: "40px", 
+          borderRadius: "10px", 
+          boxShadow: "2px", 
+          display:"flex", 
+          flexDirection:"column", 
+          alignItems:"center",
+          backgroundColor:"black"
+          }}>
+          <Typography component="h1" variant='h5' color={'white'}>Entrar</Typography>
           {erro && (<Alert severity='warning'>Revise seus dados e tente novamente</Alert>) }
-          <Box component="form" onSubmit={Autenticar}>
-            <TextField 
+          <Box component="form" onSubmit={Autenticar} color={'white'} className={Style.btn}>
+            <TextField
             label="Email" 
-            variant='outlined' 
+            variant='filled' 
             type='email'
             margin='normal' 
             fullWidth 
@@ -83,7 +75,7 @@ function Login() {
             />
             <TextField 
             label="Senha" 
-            variant='outlined' 
+            variant='filled' 
             type='password' 
             margin='normal' 
             fullWidth 

@@ -1,0 +1,13 @@
+.btn input{
+    background-color: white;
+    border-radius: 3px;
+}
+
+body{
+    background-color: #202663;
+    margin-top: 12%;
+}
+
+.btn button{
+    background-color: #202663;
+}
