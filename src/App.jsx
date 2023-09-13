@@ -6,6 +6,7 @@ function App() {
 
   const [ filmes, setFilmes ] = useState();
   const [ erro, setErro ] = useState();
+  const [ excluir, setExcluir ] = useState();
 
   useEffect(() => {
     fetch( process.env.REACT_APP_BACKEND + "filmes",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
@@ -18,6 +19,29 @@ function App() {
     .then((json) => { setFilmes( json ) } )
     .catch((erro) => { setErro(true)})//Qualquer tipo de erro irá cair no cath
   }, [])
+  
+  function Excluir (evento, id){
+    evento.preventDefault();
+
+    fetch( process.env.REACT_APP_BACKEND + "filmes",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
+      {
+        method: "DELETE",//A requisição irá ser do método post, ou seja, por baixo dos panos (Existe 5 métodos de requisição)
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(//O corpo da requisição será essa
+          {
+            id: id,
+          }
+        )
+      })
+      .then((resposta) => resposta.json())//Então se tudo deu certo pega a resposta e transforma em JSON
+      .then((json) => {
+        const novaLista = filmes.filter ((filme) => filme._id !== id);
+        setFilmes (novaLista)})
+      .catch((erro) => { setErro(true) })
+  }
+    
 
   return (
     <>
@@ -37,6 +61,8 @@ function App() {
             categoria={filme.categoria}
             ano={filme.ano}
             duracao={filme.duracao}
+            excluir={ (e) => Excluir( e, filme._id ) }
+            id={filme._id}
           />
         ) )
       )}

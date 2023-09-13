@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './Login';
 import Cadastro from './Cadastro';
 import Movie from './Movie';
+import EditaFilme from './EditaFilme';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/movie",
     element: <Movie />
+  },
+  {
+    path: "/edicao/:id",
+    element: <EditaFilme/>
   }
 ])
 
