@@ -14,8 +14,8 @@ function Card() {
                     <img src={Setup} className={Style.setup}/>
                 </div>
                 <div className={Style.info}>
-                    <h2>Computador gamer</h2>
-                    <h3>R$ 5000</h3>
+                    <h3>Computador gamer</h3>
+                    <h2 className={Style.valor}>R$ 5000</h2>
                 </div>
                 <div className={Style.but}>
                     <button>Comprar</button>
@@ -26,8 +26,8 @@ function Card() {
                     <img src={Setup} />
                 </div>
                 <div>
-                    <span>Computador gamer</span>
-                    <h2>R$ 5000</h2>
+                    <h3>Computador gamer</h3>
+                    <h2 className={Style.valor}>R$ 5000</h2>
                 </div>
                 <div className={Style.but}>
                     <button>Comprar</button>
@@ -38,8 +38,8 @@ function Card() {
                     <img src={Setup} />
                 </div>
                 <div>
-                    <span>Computador gamer</span>
-                    <h2>R$ 5000</h2>
+                    <h3>Computador gamer</h3>
+                    <h2 className={Style.valor}>R$ 5000</h2>
                 </div>
                 <div className={Style.but}>
                     <button>Comprar</button>
@@ -50,8 +50,8 @@ function Card() {
                     <img src={Setup} />
                 </div>
                 <div>
-                    <span>Computador gamer</span>
-                    <h2>R$ 5000</h2>
+                    <h3>Computador gamer</h3>
+                    <h2 className={Style.valor}>R$ 5000</h2>
                 </div>
                 <div className={Style.but}>
                     <button>Comprar</button>

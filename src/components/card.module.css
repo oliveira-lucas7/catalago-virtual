@@ -13,6 +13,7 @@
     display: flex;
     margin-top: 2%;
     justify-content: space-evenly;
+    margin-bottom: 10rem;
 }
 
 .cartao{
@@ -35,6 +36,7 @@ h2, h3{
     text-align: center;
     margin: 0 auto;
     justify-content: center;
+    color: white;
 }
 
 .but button{
@@ -42,9 +44,73 @@ h2, h3{
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    margin-top: 8%;
+    margin-top: 1rem;
     background-color: #9E6D0D;
     border-radius: 15px;
     height: 2rem;
     width: 10rem;
+}
+
+.valor{
+    color: white;
+    margin-top: 6%;
+}
+
+
+@Media screen and (max-width: 1440px){
+    .cartao img{
+        width: 12rem;
+        height: 8rem;
+    }
+}
+
+@Media screen and (max-width: 1024px){
+    .cartao img{
+        width: 9rem;
+        height: 6rem;
+    }
+    .h3{
+        font-size: 15px;
+    }
+    .cartao h2{
+        margin-top: 8%;
+    }
+    .but button{
+        margin-top: 1%;
+        height: 2rem;
+        width: 8rem;
+    }
+}
+
+@Media screen and (max-width: 768px){
+    .cartao{
+        width: 10rem;
+    }
+    .but button{
+        margin-top: 2rem;
+    }
+    .cartao h2{
+        margin-top: 2rem;
+    }
+}
+
+@Media screen and (max-width: 425px){
+    .produtos{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 10rem;
+    }
+    .cartao{
+        margin-top: 5%;
+    }
+    h2{
+        color: black;
+    }
+}
+
+button{
+    cursor: pointer;
 }

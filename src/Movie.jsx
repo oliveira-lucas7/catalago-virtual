@@ -2,13 +2,14 @@ import { Alert, Autocomplete, Box, Button, Container, TextField, Typography } fr
 import React, { useState, useEffect } from 'react'
 import Style from "./movie.module.css"
 import fundo from "./photos/fundo.webp"
+import Header from "./components/header"
 
 
 function Movie() {
 
   document.body.style.backgroundImage = "url("+fundo+")";
 
-  const options = ["Terror", "Drama", "Comédia", "Documentário", "Ação", "Suspense"]
+  const options = ["Computador com monitor", "Sem monitor"]
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [ano, setAno] = useState("");
@@ -67,24 +68,27 @@ function Movie() {
   }, [cadastro])
 
   return (
+  <>
+    <Header></Header>
     <Container component="section" maxWidth="xs">
       <Box sx={{
-        mt: 15,
+        mt: 12,
         padding: "40px",
         borderRadius: "10px",
         boxShadow: "2px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        opacity: "0.82",
       }}
       >
         { erro && (<Alert severity='warning'>Computador já castrado. tente novamente por favor</Alert>)}
-        { cadastro && ( <Alert severity='success'>Obrigado por nos entregar o seu computador</Alert>)}
-        <Typography component="h1" variant='h5' color="#fff">Cadastrar um filme</Typography>
+        { cadastro && ( <Alert severity='success'>Obrigado por cadastrar o seu computador</Alert>)}
+        <Typography component="h1" variant='h5' color="#fff">Cadastrar um computador</Typography>
         <Box component="form" onSubmit={Cadastrar} className={Style.btn} /*Quando clicar no botão para enviar o formulário irá chamar essa função*/>
           <TextField
-            label="Título"
+            label="Processador"
             variant='filled'
             type='name'
             margin='normal'
@@ -93,7 +97,7 @@ function Movie() {
             onChange={(e) => setNome(e.target.value)}
           />
           <TextField
-            label="Descrição"
+            label="Armazenamento"
             variant='filled'
             type='text'
             margin='normal'
@@ -102,7 +106,7 @@ function Movie() {
             onChange={(e) => setDescricao(e.target.value)}
           />
           <TextField
-            label="Ano"
+            label="Placa mãe"
             variant='filled'
             type='number'
             margin='normal'
@@ -111,9 +115,9 @@ function Movie() {
             onChange={(e) => setAno(e.target.value)}
           />
           <TextField
-            label="Duração"
+            label="Memória ram"
             variant='filled'
-            type='time'
+            type='text'
             margin='normal'
             fullWidth
             value={duracao}
@@ -133,7 +137,7 @@ function Movie() {
             renderInput={(params) => <TextField {...params} label="Controllable" />}
           />
           <TextField
-            label="Url da Imagem"
+            label="Url da Imagem do computador"
             variant='filled'
             type='text'
             margin='normal'
@@ -145,6 +149,7 @@ function Movie() {
         </Box>
       </Box>
     </Container>
+  </>
   )
 }
 

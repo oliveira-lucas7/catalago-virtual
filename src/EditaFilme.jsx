@@ -3,8 +3,12 @@ import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import { Navigate, json, useNavigate, useParams } from 'react-router-dom';
+import fundo from "./photos/fundo.webp"
+import Header from "./components/header"
 
 function EditaFilme() {
+
+  document.body.style.backgroundImage = "url("+fundo+")";
 
   const { id } = useParams();// Parâmetro serve para pegar todas as informações de um objeto 
 
@@ -12,7 +16,7 @@ function EditaFilme() {
 
   const [nome, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
-  const options = ["Terror", "Drama", "Comédia", "Documentário", "Ação", "Suspense"]
+  const options = ["Computador com monitor", "Sem monitor"]
   const [ano, setAno] = useState("");
   const [duracao, setDuracao] = useState("")
   const [imagem, setImagem] = useState("");
@@ -85,6 +89,7 @@ function EditaFilme() {
 
   return (
     <>
+    <Header></Header>
     <Container component="section" maxWidth="xs">
         <Box sx={{
           mt: 10, 
@@ -94,15 +99,20 @@ function EditaFilme() {
           display:"flex", 
           flexDirection:"column", 
           alignItems:"center", 
-          background:"rgba(0,0,0,.75)"}}
+          background:"black",
+          opacity: "0.85"
+        }}
           >
 
           { erro && ( <Alert severity="warning">{erro}</Alert>)}
           { editar && ( <Alert severity="success">Filme editado com sucesso</Alert>)}
-          <Typography component="h1" variant='h5' color="#fff">Editar filme</Typography>
+          <Typography component="h1" variant='h5' color="#fff">Editar Computador</Typography>
           <Box component="form" onSubmit={Editar}>
-            <TextField 
-            label="Título" 
+            <TextField  sx={{
+              backgroundColor: 'white',
+              borderRadius: "5px"
+            }}
+            label="Processador" 
             variant='filled' 
             type='name'
             margin='normal' 
@@ -110,8 +120,12 @@ function EditaFilme() {
             value={nome}
             onChange={(e)=> setTitulo(e.target.value)}
             />
-            <TextField 
-            label="Descricao" 
+            <TextField  sx={{
+              backgroundColor: 'white',
+              borderRadius: "5px",
+              marginTop: "8px"
+            }}
+            label="Armazenamento" 
             variant='filled' 
             type='text' 
             margin='normal' 
@@ -119,25 +133,37 @@ function EditaFilme() {
             value={descricao}
             onChange={(e)=> setDescricao(e.target.value)}
             />
-            <TextField 
-            label="Ano" 
+            <TextField  sx={{
+              backgroundColor: 'white',
+              borderRadius: "5px",
+              marginTop: "8px"
+            }}
+            label="Placa mãe" 
             variant='filled' 
-            type='number'
+            type='text'
             margin='normal' 
             fullWidth
             value={ano}
             onChange={(e)=>setAno(e.target.value)}  
             />
-            <TextField 
-            label="Duracao" 
+            <TextField  sx={{
+              backgroundColor: 'white',
+              borderRadius: "5px",
+              marginTop: "8px"
+            }}
+            label="Memória ram" 
             variant='filled' 
-            type='date-time'
+            type='text'
             margin='normal' 
             fullWidth
             value={duracao}
             onChange={(e)=>setDuracao(e.target.value)}  
             />
-            <Autocomplete
+            <Autocomplete sx={{
+              backgroundColor: 'white',
+              borderRadius: "5px",
+              marginTop: "8px"
+            }}
             value={value}
             onChange={(event, newValue) => {
               setValue(newValue);
@@ -150,16 +176,19 @@ function EditaFilme() {
             options={options}
             renderInput={(params) => <TextField {...params} label="Controllable" />}
           />
-            <TextField 
-            label="Url da imagem" 
+            <TextField sx={{
+              backgroundColor: 'white',
+              borderRadius: "5px"
+            }}
+            label="Url da imagem do Computador" 
             variant='filled' 
             type='text'
             margin='normal' 
             fullWidth
             value={imagem}
-            onChange={(e)=> setImagem(e.target.value)}  
+            onChange={(e)=> setImagem(e.target.value)}
             />
-            <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2}}>Editar</Button>
+            <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2, backgroundColor: "#390850"}}>Editar</Button>
             </Box>
         </Box>
       </Container>

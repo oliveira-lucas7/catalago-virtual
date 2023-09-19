@@ -1,8 +1,5 @@
-.btn input{
-    background-color: white;
-    border-radius: 5px;
-}
-
-input [type= "checked"]{
-    background-color: white;
+a{
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
 }

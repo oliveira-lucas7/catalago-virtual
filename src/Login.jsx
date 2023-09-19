@@ -6,11 +6,11 @@ import { Navigate, json, useNavigate } from 'react-router-dom';
 import { blue } from '@mui/material/colors';
 import Style from "./Login.module.css";
 import fundo from "./photos/fundo.webp"
+import Header from "./components/header"
 
 function Login() {
 
   document.body.style.backgroundImage = "url("+fundo+")";
-
 
   const [ email, setEmail]= useState("");
   const [ senha, setSenha]= useState("");
@@ -54,9 +54,11 @@ function Login() {
   }
 
   return (
+    <>
+      <Header></Header>
       <Container component="section" maxWidth="xs" id="login">
         <Box sx={{
-          mt: 25,
+          mt: 20,
           padding: "40px", 
           borderRadius: "10px", 
           boxShadow: "2px", 
@@ -64,12 +66,15 @@ function Login() {
           flexDirection:"column", 
           alignItems:"center",
           backgroundColor:"black",
-          opacity: "1",
+          opacity: "0.82",
           }}>
           <Typography component="h1" variant='h5' color={'white'}>Entrar</Typography>
           {erro && (<Alert severity='warning'>Revise seus dados e tente novamente</Alert>) }
           <Box component="form" onSubmit={Autenticar} color={'white'} className={Style.btn}>
-            <TextField
+            <TextField sx={{
+              backgroundColor: "white",
+              borderRadius: "5px"
+            }}
             label="Email" 
             variant='filled' 
             type='email'
@@ -78,7 +83,10 @@ function Login() {
             value={email} 
             onChange={(e) => setEmail(e.target.value)}
             />
-            <TextField 
+            <TextField sx={{
+              backgroundColor: "white",
+              borderRadius: "5px"
+            }}
             label="Senha" 
             variant='filled' 
             type='password' 
@@ -88,7 +96,11 @@ function Login() {
             onChange={(e) => setSenha(e.target.value)}
             />
             <FormControlLabel
-            control={<Checkbox  value={lembrar} onChange={(e) => setLembrar(!lembrar)} />}// a ! serve para colocar o contrário do que está dentro da variável lembrar, pode estar true vai para false, se estiver false vai para true.
+            control={<Checkbox  sx={{
+              backgroundColor: "white",
+              height: "1px",
+              width: "1px",
+            }} value={lembrar} onChange={(e) => setLembrar(!lembrar)} />}// a ! serve para colocar o contrário do que está dentro da variável lembrar, pode estar true vai para false, se estiver false vai para true.
             label="Lembra-me"
             />
             <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2, backgroundColor: "#390850"}}>Login</Button>
@@ -96,13 +108,12 @@ function Login() {
               <Grid item xs>
                 Esqueci a senha
               </Grid>
-              <Grid item>
-                Cadastrar
-              </Grid>
+              <a href="http://localhost:3000/cadastro">Cadastrar</a>
             </Grid>
           </Box>
         </Box>
       </Container>
+    </>
   )
 }
 

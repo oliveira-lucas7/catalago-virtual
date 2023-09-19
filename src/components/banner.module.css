@@ -1,7 +1,8 @@
 .geralbaner{
     display: flex;
     background-color: #390850;
-    width: 100vw;
+    width: 98vw;
+    margin: 0 auto;
     height: 3%;
     margin-top: 2%;
 }
@@ -56,8 +57,9 @@
 
 @Media screen and (max-width: 425px){
     .frase h2 a{
-        font-size: 10px;
-        line-height: 5px;
+        font-size: 15px;
+        line-height: 20px;
+        
     }
     
     .img img{

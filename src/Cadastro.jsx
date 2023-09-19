@@ -3,9 +3,9 @@ import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import { Navigate, json, useNavigate } from 'react-router-dom';
-import Style from "./Cadastro.module.css";
 import { type } from '@testing-library/user-event/dist/type';
 import fundo from "./photos/fundo.webp"
+import Header from "./components/header"
 
 function Cadastro() {
 
@@ -62,9 +62,10 @@ function Cadastro() {
 
   return (
     <>
+    <Header></Header>
     <Container component="section" maxWidth="xs">
         <Box sx={{
-          mt: 20, 
+          mt: 12, 
           padding: "40px", 
           borderRadius: "10px", 
           borderRadius: "10px",
@@ -77,8 +78,11 @@ function Cadastro() {
           <Typography component="h1" variant='h5' color="#fff">Cadastro</Typography>
           {erro && (<Alert severity='warning' sx={{mt:2, mb:2}}>Desculpe tente novamente</Alert>) /* Se a variável erro for true, ou seja, deu um erro, portanto será dado um alerta*/}
           {cadastro && (<Alert severity="info">Você foi cadastro com sucesso</Alert>) /*se a variável cadastro for true, ou seja, o cadastro foi realizado com sucesso, portanto será dado um alerta*/}
-          <Box component="form" onSubmit={Cadastrar} /*Quando clicar no botão para enviar o formulário irá chamar essa função*/ className={Style.btn}>
-            <TextField 
+          <Box component="form" onSubmit={Cadastrar} /*Quando clicar no botão para enviar o formulário irá chamar essa função*/>
+            <TextField sx={{
+              backgroundColor: "white",
+              borderRadius: "5px"
+            }}
             label="Nome Completo" 
             variant='filled' 
             type='name'
@@ -87,7 +91,10 @@ function Cadastro() {
             value={nome}
             onChange={(e)=> setNome(e.target.value)}
             />
-            <TextField 
+            <TextField sx={{
+              backgroundColor: "white",
+              borderRadius: "5px"
+            }}
             label="Email" 
             variant='filled' 
             type='email' 
@@ -96,7 +103,10 @@ function Cadastro() {
             value={email}
             onChange={(e)=> setEmail(e.target.value)}
             />
-            <TextField 
+            <TextField sx={{
+              backgroundColor: "white",
+              borderRadius: "5px"
+            }}
             label="Telefone" 
             variant='filled' 
             type='number'
@@ -105,7 +115,10 @@ function Cadastro() {
             value={telefone}
             onChange={(e)=>setTelefone(e.target.value)}  
             />
-            <TextField 
+            <TextField sx={{
+              backgroundColor: "white",
+              borderRadius: "5px"
+            }}
             label="CPF" 
             variant='filled' 
             type='text'
@@ -114,7 +127,10 @@ function Cadastro() {
             value={cpf}
             onChange={(e)=>setCpf(e.target.value)}  
             />
-            <TextField 
+            <TextField sx={{
+              backgroundColor: "white",
+              borderRadius: "5px"
+            }}
             label="Senha" 
             variant='filled' 
             type='password'

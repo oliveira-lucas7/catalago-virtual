@@ -72,6 +72,7 @@ function App() {
           />
         ) )
       )}
+      <footer>Catálago Virtual React</footer>
       </Container>
     </>
   );

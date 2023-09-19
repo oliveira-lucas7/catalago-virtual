@@ -18,7 +18,7 @@ import { Link } from '@mui/material';
 import Style from "./header.module.css"
 import Logo from "./logo.png"
 
-const pages = ['Computadores', 'Cadastrar PC'];
+const pages = [ 'Cadastrar PC'];
 
 function Header(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -40,12 +40,11 @@ function Header(props) {
   };
 
   return (
-    <AppBar position="static" sx={{
+    <AppBar position="static" className={Style.appbar} sx={{
       backgroundColor: "#390850"
     }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -59,6 +58,7 @@ function Header(props) {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              padding: "0"
             }}
           >
           </Typography>
@@ -72,7 +72,6 @@ function Header(props) {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <img src={Logo} />
               <MenuIcon />
             </IconButton>
             <Menu
@@ -90,17 +89,17 @@ function Header(props) {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none',  textDecoration: "none"},
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link textAlign="center">{page}</Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <a href=""><img src={Logo} className={Style.logo}/></a>
           <Typography
             variant="h5"
             noWrap
@@ -115,25 +114,25 @@ function Header(props) {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              backgroundColor: "Black" 
             }}
           >
-            LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', textDecoration: "none"} }}>
             {pages.map((page) => (
-              <Button
+              <Button 
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', textDecoration: "none"}}
               >
-                {page}
+                <a href="http://localhost:3000/movie">{page}</a>
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0,}}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
@@ -144,6 +143,7 @@ function Header(props) {
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
+                textDecoration: "none"
               }}
               keepMounted
               transformOrigin={{
