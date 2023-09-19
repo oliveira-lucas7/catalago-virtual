@@ -1,6 +1,9 @@
+import "./global.css";
 import { Avatar, Button, Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import Filmes from "./components/Filmes";
+import Header from "./components/header";
+import Banner from "./components/banner";
 
 function App() {
 
@@ -45,7 +48,8 @@ function App() {
 
   return (
     <>
-      <h1>Filmes</h1>
+      <Header></Header>
+      <Banner></Banner>
       <Container sx={{
         display: "flex",
         flexFlow: "row",

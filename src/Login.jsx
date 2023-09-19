@@ -5,8 +5,12 @@ import { useState, useEffect } from 'react';
 import { Navigate, json, useNavigate } from 'react-router-dom';
 import { blue } from '@mui/material/colors';
 import Style from "./Login.module.css";
+import fundo from "./photos/fundo.webp"
 
 function Login() {
+
+  document.body.style.backgroundImage = "url("+fundo+")";
+
 
   const [ email, setEmail]= useState("");
   const [ senha, setSenha]= useState("");
@@ -50,16 +54,17 @@ function Login() {
   }
 
   return (
-      <Container component="section" maxWidth="xs" className={Style.container}>
+      <Container component="section" maxWidth="xs" id="login">
         <Box sx={{
-          mt: 10, 
+          mt: 25,
           padding: "40px", 
           borderRadius: "10px", 
           boxShadow: "2px", 
           display:"flex", 
           flexDirection:"column", 
           alignItems:"center",
-          backgroundColor:"black"
+          backgroundColor:"black",
+          opacity: "1",
           }}>
           <Typography component="h1" variant='h5' color={'white'}>Entrar</Typography>
           {erro && (<Alert severity='warning'>Revise seus dados e tente novamente</Alert>) }
@@ -82,8 +87,8 @@ function Login() {
             value={senha} 
             onChange={(e) => setSenha(e.target.value)}
             />
-            <FormControlLabel 
-            control={<Checkbox value={lembrar} onChange={(e) => setLembrar(!lembrar)} />}// a ! serve para colocar o contrário do que está dentro da variável lembrar, pode estar true vai para false, se estiver false vai para true.
+            <FormControlLabel
+            control={<Checkbox  value={lembrar} onChange={(e) => setLembrar(!lembrar)} />}// a ! serve para colocar o contrário do que está dentro da variável lembrar, pode estar true vai para false, se estiver false vai para true.
             label="Lembra-me"
             />
             <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2}}>Login</Button>

@@ -1,8 +1,12 @@
 import { Alert, Autocomplete, Box, Button, Container, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react'
+import Style from "./movie.module.css"
+import fundo from "./photos/fundo.webp"
 
 
 function Movie() {
+
+  document.body.style.backgroundImage = "url("+fundo+")";
 
   const options = ["Terror", "Drama", "Comédia", "Documentário", "Ação", "Suspense"]
   const [nome, setNome] = useState("");
@@ -65,19 +69,20 @@ function Movie() {
   return (
     <Container component="section" maxWidth="xs">
       <Box sx={{
-        mt: 10,
+        mt: 15,
         padding: "40px",
         borderRadius: "10px",
         boxShadow: "2px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        backgroundColor: 'black'
       }}
       >
-        { erro && (<Alert severity='warning'>Filme já castrado. tente novamente por favor</Alert>)}
-        { cadastro && ( <Alert severity='success'>Obrigado por cadastrar seu filme</Alert>)}
-        <Typography component="h1" variant='h5' color="#161616">Cadastrar um filme</Typography>
-        <Box component="form" onSubmit={Cadastrar} /*Quando clicar no botão para enviar o formulário irá chamar essa função*/>
+        { erro && (<Alert severity='warning'>Computador já castrado. tente novamente por favor</Alert>)}
+        { cadastro && ( <Alert severity='success'>Obrigado por nos entregar o seu computador</Alert>)}
+        <Typography component="h1" variant='h5' color="#fff">Cadastrar um filme</Typography>
+        <Box component="form" onSubmit={Cadastrar} className={Style.btn} /*Quando clicar no botão para enviar o formulário irá chamar essa função*/>
           <TextField
             label="Título"
             variant='filled'

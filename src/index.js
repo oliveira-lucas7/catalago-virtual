@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from "./App";
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, useLocation  } from 'react-router-dom';
 import Login from './Login';
 import Cadastro from './Cadastro';
 import Movie from './Movie';
 import EditaFilme from './EditaFilme';
 import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material/styles';
+
 
 const theme = createTheme( {
   palette: {
@@ -56,6 +57,7 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  
   <ThemeProvider theme={theme}>
     <RouterProvider router={router}/>
   </ThemeProvider>

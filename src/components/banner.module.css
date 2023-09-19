@@ -1,0 +1,14 @@
+.img img{
+    width: 100%;
+    margin-top: 0.5%;
+}
+
+.frase{
+    display: flex;
+    justify-content: center;
+}
+
+.frase h2 a{
+    text-decoration: none;
+    color: #390850;
+}
