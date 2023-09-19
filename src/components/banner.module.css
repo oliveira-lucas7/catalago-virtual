@@ -1,14 +1,87 @@
+.geralbaner{
+    display: flex;
+    background-color: #390850;
+    width: 100vw;
+    height: 3%;
+    margin-top: 2%;
+}
+
 .img img{
-    width: 100%;
-    margin-top: 0.5%;
+    height: 450px;
+}
+
+.textimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .frase{
     display: flex;
     justify-content: center;
+    text-align: center;
+    align-items: center;
 }
 
 .frase h2 a{
     text-decoration: none;
-    color: #390850;
+    color: white;
+}
+
+.textimg{
+    display: flex;
+}
+
+@Media screen and (max-width: 1024px){
+    .img img{
+        height: 300px;
+        width: 450px;
+    }
+}
+
+
+@Media screen and (max-width: 768px){
+    .img img{
+        height: 250px;
+        width: 400px;
+    }
+
+    .frase h2 a{
+        font-size: 15px;
+    }
+}
+
+
+@Media screen and (max-width: 425px){
+    .frase h2 a{
+        font-size: 10px;
+        line-height: 5px;
+    }
+    
+    .img img{
+        height: 170px;
+        width: 280px;
+    }
+
+    .frase{
+        margin-right: 10px;
+    }
+}
+
+
+@Media screen and (max-width: 375px){
+    .img img{
+        height: 150px;
+        width: 225px;
+    }
+}
+
+
+@Media screen and (max-width: 320px){
+    .img img{
+        height: 120px;
+        width: 195px;
+    }
 }

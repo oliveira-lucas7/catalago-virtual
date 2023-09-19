@@ -91,7 +91,7 @@ function Login() {
             control={<Checkbox  value={lembrar} onChange={(e) => setLembrar(!lembrar)} />}// a ! serve para colocar o contrário do que está dentro da variável lembrar, pode estar true vai para false, se estiver false vai para true.
             label="Lembra-me"
             />
-            <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2}}>Login</Button>
+            <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2, backgroundColor: "#390850"}}>Login</Button>
             <Grid container >
               <Grid item xs>
                 Esqueci a senha

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Filmes from "./components/Filmes";
 import Header from "./components/header";
 import Banner from "./components/banner";
+import Card from "./components/card"
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
     <>
       <Header></Header>
       <Banner></Banner>
+      <Card></Card>
       <Container sx={{
         display: "flex",
         flexFlow: "row",

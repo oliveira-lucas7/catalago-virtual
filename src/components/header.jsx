@@ -14,11 +14,13 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Fundo from "./logo.png";
 import { Height } from '@mui/icons-material';
+import { Link } from '@mui/material';
+import Style from "./header.module.css"
+import Logo from "./logo.png"
 
-const pages = ['Produtos', 'Entrar', 'Cadastrar'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Computadores', 'Cadastrar PC'];
 
-function Header() {
+function Header(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -70,6 +72,7 @@ function Header() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
+              <img src={Logo} />
               <MenuIcon />
             </IconButton>
             <Menu
@@ -150,11 +153,14 @@ function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              <div className={Style.cadastrar}>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link textAlign="center" href="http://localhost:3000/login"  className={Style.login}>Entrar</Link>
                 </MenuItem>
-              ))}
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link textAlign="center" href="http://localhost:3000/cadastro"  className={Style.login}>Cadastro</Link>
+                </MenuItem>
+              </div>
             </Menu>
           </Box>
         </Toolbar>

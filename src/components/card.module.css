@@ -1,0 +1,50 @@
+.cartao img{
+    display: flex;
+    width: 15rem;
+    height: 8rem;
+    margin-top: 35px;
+    margin: 0 auto;
+    padding: 10px 0;
+    border-radius: 20px;
+}
+
+
+.produtos{
+    display: flex;
+    margin-top: 2%;
+    justify-content: space-evenly;
+}
+
+.cartao{
+    background-color: #390850;
+    border-style: solid;
+    border-radius: 20px;
+    width: 15%;
+    height: 17rem;
+}
+
+.venda{
+    text-align: center;
+    margin-top: 2%;
+    font-size: 22px;
+}
+
+h2, h3{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.but button{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 8%;
+    background-color: #9E6D0D;
+    border-radius: 15px;
+    height: 2rem;
+    width: 10rem;
+}

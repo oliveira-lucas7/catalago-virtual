@@ -123,7 +123,7 @@ function Cadastro() {
             value={senha}
             onChange={(e)=> setSenha(e.target.value)}  
             />
-            <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2}}>Cadastrar</Button>
+            <Button type='submit' variant="contained" fullWidth sx={{mt:2, mb:2, backgroundColor: "#390850"}}>Cadastrar</Button>
           </Box>
         </Box>
       </Container>
