@@ -20,7 +20,6 @@ function Login() {
   const navigate = useNavigate()
   useEffect( () => {
     if (login){
-      localStorage.setItem("usuario", JSON.stringify({email:email}));
       setEmail("");
       setSenha("");
       navigate("/");//Está mudando a url da react, após o login manda o usuário para a página raiz (app)
@@ -39,14 +38,17 @@ function Login() {
     body: JSON.stringify(//O corpo da requisição será essa
       {
         email: email,//No banco de dados estará campos chamados email que neles será procurado o que está dentro da variável email
-        password: senha//No banco de dados estará campos chamados password que neles será procurado o que está dentro da variável senha
+        senha: senha//No banco de dados estará campos chamados password que neles será procurado o que está dentro da variável senha
       }
     )})
     .then((resposta) => resposta.json())//Então se tudo deu certo pega a resposta e transforma em JSON
     .then((json) => {
-      if (json.statusCode === 401){//Se o número que o banco de dados retornar, ou seja, o statusCode for igual a 401, quer dizer que não foi encontrado esses dados no banco de dados, 401 é o número específico que diz que não está autorizado        setLogin(false);
+      console.log(json.user);
+      if (json.user){//Se o número que o banco de dados retornar, ou seja, o status Code for igual a 401, quer dizer que não foi encontrado esses dados no banco de dados, 401 é o número específico que diz que não está autorizado        setLogin(false);
+        localStorage.setItem( "usuario" , JSON.stringify( json.user._id ) );
         setLogin(true);//Caso contrário, quer dizer que o login foi autorizado, logo o setLogin será true
       } else {
+        localStorage.removeItem( "usuario" );
         setErro(true)//Se satisfazer a condição quer dizer que não foi autorizado, ou seja, o setErro será true, e dará erro ao fazer o login
       }
     })

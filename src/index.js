@@ -46,7 +46,7 @@ const router = createBrowserRouter([
     element: <Cadastro />
   },
   {
-    path: "/movie",
+    path: "/produtos",
     element: <Movie />
   },
   {

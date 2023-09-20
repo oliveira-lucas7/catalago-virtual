@@ -16,6 +16,7 @@ function Cadastro() {
   const [ telefone, setTelefone] = useState("");
   const [ nome , setNome]=useState("");
   const [ cpf , setCpf]=useState("");
+  const navigate = useNavigate()
 
   const [ cadastro, setCadastro]=useState(false);
   const [ erro, setErro]=useState(false);
@@ -23,7 +24,7 @@ function Cadastro() {
   function Cadastrar(e){
     e.preventDefault();
 
-    fetch( process.env.REACT_APP_BACKEND + "users",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
+    fetch( process.env.REACT_APP_BACKEND + "usuarios",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
     {method: "POST",//A requisição irá ser do método post, ou seja, por baixo dos panos (Existe 5 métodos de requisição)
     headers: {
       'Content-Type': 'application/json'
@@ -34,7 +35,7 @@ function Cadastro() {
         email: email,
         cpf: cpf,
         telefone: telefone,
-        senha: senha
+        senha: senha,
       }
     )})
     .then((resposta) => resposta.json())//Então se tudo deu certo pega a resposta e transforma em JSON
@@ -62,7 +63,7 @@ function Cadastro() {
 
   return (
     <>
-    <Header></Header>
+    <Header />
     <Container component="section" maxWidth="xs">
         <Box sx={{
           mt: 12, 
@@ -77,7 +78,7 @@ function Cadastro() {
           >
           <Typography component="h1" variant='h5' color="#fff">Cadastro</Typography>
           {erro && (<Alert severity='warning' sx={{mt:2, mb:2}}>Desculpe tente novamente</Alert>) /* Se a variável erro for true, ou seja, deu um erro, portanto será dado um alerta*/}
-          {cadastro && (<Alert severity="info">Você foi cadastro com sucesso</Alert>) /*se a variável cadastro for true, ou seja, o cadastro foi realizado com sucesso, portanto será dado um alerta*/}
+          {cadastro && (<Alert severity="info"><Alert>Você foi cadastro com sucesso</Alert></Alert>) /*se a variável cadastro for true, ou seja, o cadastro foi realizado com sucesso, portanto será dado um alerta*/}
           <Box component="form" onSubmit={Cadastrar} /*Quando clicar no botão para enviar o formulário irá chamar essa função*/>
             <TextField sx={{
               backgroundColor: "white",

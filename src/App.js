@@ -1,19 +1,23 @@
 import "./global.css";
-import { Avatar, Button, Container } from "@mui/material";
+import { Avatar, Button, Container, Grid} from "@mui/material";
 import { useEffect, useState } from "react";
 import Filmes from "./components/Filmes";
 import Header from "./components/header";
 import Banner from "./components/banner";
-import Card from "./components/card"
+import Card from "./components/card";
+import ComputadorC from "./components/ComputadorC";
 
 function App() {
 
   const [ filmes, setFilmes ] = useState();
   const [ erro, setErro ] = useState();
   const [ excluir, setExcluir ] = useState();
-
+  const [ usuario, setUsuario ] = useState("")
   useEffect(() => {
-    fetch( process.env.REACT_APP_BACKEND + "filmes",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
+
+    const usuario = localStorage.getItem ( "usuario" );
+
+    fetch( process.env.REACT_APP_BACKEND + "produtos/" + usuario,//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
     {method: "GET",//A requisição irá ser do método post, ou seja, por baixo dos panos (Existe 5 métodos de requisição)
     headers: {
       'Content-Type': 'application/json'
@@ -27,7 +31,7 @@ function App() {
   function Excluir (evento, id){
     evento.preventDefault();
 
-    fetch( process.env.REACT_APP_BACKEND + "filmes",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
+    fetch( process.env.REACT_APP_BACKEND + "produtos",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
       {
         method: "DELETE",//A requisição irá ser do método post, ou seja, por baixo dos panos (Existe 5 métodos de requisição)
         headers: {
@@ -36,6 +40,7 @@ function App() {
         body: JSON.stringify(//O corpo da requisição será essa
           {
             id: id,
+            usuario: localStorage.getItem('usuario')
           }
         )
       })
@@ -52,27 +57,30 @@ function App() {
       <Header></Header>
       <Banner></Banner>
       <Card></Card>
-      <Container sx={{
-        display: "flex",
-        flexFlow: "row",
-        flexWrap: "wrap",
-        gap: "2rem"
-      }}>
+      <Container
+        sx={{
+          gap: "6rem",
+          marginTop: "-15rem",
+          display: "flex",
+          margin: "0 auto",
+          justifyContent: "space-evenly",
+          flexWrap: "nowrap"
+        }}
+        >
       { filmes && (
-        filmes.map( (filme, index ) => ( //O map mapeia todos os filmes cadastrados, e inseri o valores deles na tela
-          <Filmes 
-            imagem={filme.imagem}
-            titulo={filme.titulo}
-            descricao={filme.descricao}
-            categoria={filme.categoria}
-            ano={filme.ano}
-            duracao={filme.duracao}
-            excluir={ (e) => Excluir( e, filme._id ) }
-            id={filme._id}
+        filmes.map( (produto, index ) => ( //O map mapeia todos os filmes cadastrados, e inseri o valores deles na tela
+          <ComputadorC
+            imagem={produto.imagem}
+            titulo={produto.titulo}
+            descricao={produto.descricao}
+            categoria={produto.categoria}
+            ano={produto.ano}
+            duracao={produto.duracao}
+            excluir={ (e) => Excluir( e, produto._id ) }
+            id={produto._id}
           />
         ) )
       )}
-      <footer>Catálago Virtual React</footer>
       </Container>
     </>
   );

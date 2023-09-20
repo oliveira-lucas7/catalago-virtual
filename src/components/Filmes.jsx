@@ -1,4 +1,5 @@
 import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography, Link } from "@mui/material"
+import Style from "./filmes.module.css"
 
 function Filmes(props) {
   return (
@@ -31,10 +32,10 @@ function Filmes(props) {
             </CardContent>
         </CardActionArea>
         <Grid item xs={6}>
-            <button onClick={props.excluir}>X</button>
+            <Link onClick={props.excluir} className={Style.excluir}>X</Link>
         </Grid>
         <Grid item xs={6}>
-            <Link href={"edicao/" + props.id}>Editar</Link>
+            <Link href={"edicao/" + props.id} className={Style.editar}>Editar</Link>
         </Grid>
     </Card>
   )

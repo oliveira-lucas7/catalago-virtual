@@ -99,7 +99,7 @@ function Header(props) {
               ))}
             </Menu>
           </Box>
-          <a href=""><img src={Logo} className={Style.logo}/></a>
+          <a href="http://localhost:3000"><img src={Logo} className={Style.logo}/></a>
           <Typography
             variant="h5"
             noWrap
@@ -125,7 +125,7 @@ function Header(props) {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block', textDecoration: "none"}}
               >
-                <a href="http://localhost:3000/movie">{page}</a>
+                <a href="http://localhost:3000/produtos">{page}</a>
               </Button>
             ))}
           </Box>

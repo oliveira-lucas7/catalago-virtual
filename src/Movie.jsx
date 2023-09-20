@@ -9,11 +9,11 @@ function Movie() {
 
   document.body.style.backgroundImage = "url("+fundo+")";
 
-  const options = ["Computador com monitor", "Sem monitor"]
-  const [nome, setNome] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [ano, setAno] = useState("");
-  const [duracao, setDuracao] = useState("")
+  const options = ["Ryzen", "Intel"]
+  const [processador, setNome] = useState("");
+  const [armazenamento, setDescricao] = useState("");
+  const [placamae, setAno] = useState("");
+  const [memoriaram, setDuracao] = useState("")
   const [imagem, setImagem] = useState("");
   const [erro, setErro] = useState(false)
 
@@ -26,7 +26,7 @@ function Movie() {
   function Cadastrar(e) {
     e.preventDefault();
 
-    fetch( process.env.REACT_APP_BACKEND + "filmes",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
+    fetch( process.env.REACT_APP_BACKEND + "produtos",//O fetch manda uma requisição para url digitada, futuramente será o link do banco de dados feitos por nós
       {
         method: "POST",//A requisição irá ser do método post, ou seja, por baixo dos panos (Existe 5 métodos de requisição)
         headers: {
@@ -34,12 +34,13 @@ function Movie() {
         },
         body: JSON.stringify(//O corpo da requisição será essa
           {
-            titulo: nome,
-            descricao: descricao,
-            ano: ano,
-            duracao: duracao,
+            titulo: processador,
+            descricao: armazenamento,
+            ano: placamae,
+            duracao: memoriaram,
             imagem: imagem,
             categoria: inputValue,
+            usuario: localStorage.getItem( "usuario" )
           }
         )
       })
@@ -93,7 +94,7 @@ function Movie() {
             type='name'
             margin='normal'
             fullWidth
-            value={nome}
+            value={processador}
             onChange={(e) => setNome(e.target.value)}
           />
           <TextField
@@ -102,16 +103,16 @@ function Movie() {
             type='text'
             margin='normal'
             fullWidth
-            value={descricao}
+            value={armazenamento}
             onChange={(e) => setDescricao(e.target.value)}
           />
           <TextField
             label="Placa mãe"
             variant='filled'
-            type='number'
+            type='text'
             margin='normal'
             fullWidth
-            value={ano}
+            value={placamae}
             onChange={(e) => setAno(e.target.value)}
           />
           <TextField
@@ -120,7 +121,7 @@ function Movie() {
             type='text'
             margin='normal'
             fullWidth
-            value={duracao}
+            value={memoriaram}
             onChange={(e) => setDuracao(e.target.value)}
           />
           <Autocomplete
@@ -134,7 +135,7 @@ function Movie() {
             }}
             id="controllable-states-demo"
             options={options}
-            renderInput={(params) => <TextField {...params} label="Controllable" />}
+            renderInput={(params) => <TextField {...params} label="Marca processador" />}
           />
           <TextField
             label="Url da Imagem do computador"

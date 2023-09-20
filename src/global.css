@@ -4,6 +4,7 @@
 }
 
 body{
+    background-color: black;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -16,3 +17,4 @@ footer{
     font-size: 20px;
     margin-bottom: 5rem;
 }
+
